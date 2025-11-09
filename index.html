@@ -772,6 +772,26 @@
                 gap: 1rem;
             }
 
+            .market-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .market-meta {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .market-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-group {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
             .control-grid {
                 grid-template-columns: 1fr;
             }
@@ -818,32 +838,239 @@
         /* Live Price Ticker */
         .live-ticker {
             background: var(--glass);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(16px);
             border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            overflow-x: auto;
+            border-radius: 22px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.45);
         }
 
-        .ticker-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin: 0 auto;
-            color: var(--primary-light);
+        .market-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .market-heading {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
-            text-align: center;
-            justify-content: center;
+            gap: 1.1rem;
         }
 
-        .ticker-title-container {
+        .market-icon {
+            width: 54px;
+            height: 54px;
+            background: var(--gradient-1);
+            border-radius: 16px;
             display: flex;
+            align-items: center;
             justify-content: center;
-            padding: 1rem 0 0.5rem 0;
-            border-bottom: 2px solid var(--primary);
-            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.35);
+        }
+
+        .market-title {
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .market-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            max-width: 520px;
+        }
+
+        .market-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.5rem 1.1rem;
+            border-radius: 999px;
+            background: rgba(16, 185, 129, 0.16);
+            color: var(--success);
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success);
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+        }
+
+        .last-updated {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .market-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            margin: 1.8rem 0 1.6rem;
+            flex-wrap: wrap;
+        }
+
+        .search-wrapper {
+            position: relative;
+            flex: 1;
+            min-width: 240px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.9rem 1.1rem 0.9rem 2.6rem;
+            border-radius: 14px;
+            border: 1px solid var(--input-border);
+            background: var(--input-bg);
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            transition: border 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.18);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.65rem 1.15rem;
+            border-radius: 999px;
+            border: 1px solid var(--glass-border);
+            background: transparent;
+            color: var(--text-secondary);
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:focus,
+        .filter-btn:focus-visible {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary);
+            color: var(--text-primary);
+            box-shadow: 0 10px 24px rgba(99, 102, 241, 0.25);
+        }
+
+        .filter-btn.active {
+            background: var(--gradient-1);
+            border-color: transparent;
+            color: #fff;
+            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.35);
+        }
+
+        .market-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 1.6rem;
+        }
+
+        .summary-card {
+            position: relative;
+            padding: 1.2rem 1.3rem;
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.04);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .summary-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.18), rgba(14, 165, 233, 0.12));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .summary-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.45);
+        }
+
+        .summary-card:hover::before {
+            opacity: 1;
+        }
+
+        .summary-card .summary-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .summary-card .summary-value {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .summary-card .summary-subtext {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .summary-card.positive {
+            border-color: rgba(16, 185, 129, 0.45);
+        }
+
+        .summary-card.negative {
+            border-color: rgba(239, 68, 68, 0.45);
+        }
+
+        .summary-card.positive .summary-value {
+            color: var(--success);
+        }
+
+        .summary-card.negative .summary-value {
+            color: var(--danger);
         }
 
         /* Ticker marquee: right-to-left scroll like a news TV crawl */
@@ -866,23 +1093,25 @@
         }
 
         .ticker-item {
-            background: var(--glass);
-            border: 2px solid var(--glass-border);
-            border-radius: 12px;
-            padding: 0.9rem 1.2rem;
-            transition: transform 0.3s, border-color 0.3s, background 0.3s;
+            background: rgba(15, 23, 42, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 1rem 1.3rem;
+            transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
             cursor: pointer;
             display: inline-flex;
             flex-direction: column;
-            align-items: center;
-            min-width: 160px;
+            align-items: flex-start;
+            justify-content: center;
+            min-width: 200px;
+            gap: 0.35rem;
         }
 
         .ticker-item:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--primary);
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.2);
+            background: rgba(99, 102, 241, 0.1);
+            border-color: rgba(99, 102, 241, 0.45);
+            transform: translateY(-6px);
+            box-shadow: 0 18px 35px rgba(99, 102, 241, 0.3);
         }
 
         .ticker-symbol {
@@ -890,13 +1119,11 @@
             font-weight: 800;
             color: var(--primary);
             text-transform: uppercase;
-            margin-bottom: 0.3rem;
         }
 
         .ticker-name {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
-            margin-bottom: 0.8rem;
             font-weight: 500;
         }
 
@@ -904,23 +1131,26 @@
             font-size: 1.5rem;
             font-weight: 800;
             color: var(--text-primary);
-            margin-bottom: 0.6rem;
         }
 
         .ticker-change {
-            font-size: 0.9rem;
-            font-weight: 600;
-            display: flex;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: inline-flex;
             align-items: center;
-            gap: 0.3rem;
+            gap: 0.35rem;
+            padding: 0.25rem 0.65rem;
+            border-radius: 999px;
         }
 
         .ticker-change.positive {
             color: var(--success);
+            background: rgba(16, 185, 129, 0.18);
         }
 
         .ticker-change.negative {
             color: var(--danger);
+            background: rgba(239, 68, 68, 0.18);
         }
 
         .ticker-pulse {
@@ -2167,8 +2397,12 @@
             }
 
             .ticker-item {
-                padding: 0.8rem;
-                min-width: 140px;
+                padding: 0.9rem 1rem;
+                min-width: 180px;
+            }
+
+            .market-summary {
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             }
         }
 
@@ -2201,22 +2435,55 @@
             }
 
             .live-ticker {
-                padding: 0.75rem;
+                padding: 1.25rem;
+                border-radius: 18px;
+            }
+
+            .market-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .market-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .market-controls {
+                gap: 1rem;
+            }
+
+            .search-wrapper {
+                width: 100%;
+            }
+
+            .filter-group {
+                width: 100%;
+                justify-content: flex-start;
             }
 
             .ticker-item {
-                padding: 0.6rem;
-                min-width: 120px;
-                font-size: 0.75rem;
+                padding: 0.85rem 1rem;
+                min-width: 160px;
             }
 
             .ticker-symbol {
-                font-size: 0.85rem;
-                font-weight: 700;
+                font-size: 0.95rem;
             }
 
             .ticker-price {
-                font-size: 0.8rem;
+                font-size: 1.15rem;
+            }
+
+            .ticker-meta {
+                flex-direction: column;
+                gap: 0.35rem;
+            }
+
+            .market-summary {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             }
 
             .sentiment-panel {
@@ -2563,12 +2830,12 @@
                 <div class="logo-text">StrategyBuilder</div>
             </div>
             <nav class="header-nav">
-                <button class="nav-btn active" onclick="scrollToSection('live-ticker')">Live Market</button>
-                <button class="nav-btn" onclick="scrollToSection('sentiment-panel')">Market Sentiment</button>
-                <button class="nav-btn" onclick="scrollToSection('indicators-panel')">Indicators</button>
-                <button class="nav-btn" onclick="scrollToSection('decision-panel')">Trade Decision</button>
-                <button class="nav-btn" onclick="scrollToSection('risk-calculator')">Risk/Reward</button>
-                <button class="nav-btn" onclick="scrollToSection('trading-config')">Backtesting</button>
+                <button class="nav-btn active" onclick="scrollToSection('live-ticker', this)">Live Market</button>
+                <button class="nav-btn" onclick="scrollToSection('sentiment-panel', this)">Market Sentiment</button>
+                <button class="nav-btn" onclick="scrollToSection('indicators-panel', this)">Indicators</button>
+                <button class="nav-btn" onclick="scrollToSection('decision-panel', this)">Trade Decision</button>
+                <button class="nav-btn" onclick="scrollToSection('risk-calculator', this)">Risk/Reward</button>
+                <button class="nav-btn" onclick="scrollToSection('trading-config', this)">Backtesting</button>
                 <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
                     <div class="toggle-circle">☀️</div>
                 </div>
@@ -2583,11 +2850,38 @@
 
         <!-- Live Price Ticker -->
         <div class="live-ticker" id="live-ticker">
-            <div class="ticker-title-container">
-                <div class="ticker-title">
-                    <span>💹</span> Live Market Prices
+            <div class="market-header">
+                <div class="market-heading">
+                    <div class="market-icon">💹</div>
+                    <div>
+                        <h2 class="market-title">Live Market Pulse</h2>
+                        <p class="market-subtitle">Real-time performance across global indices, equities, crypto, and commodities.</p>
+                    </div>
+                </div>
+                <div class="market-meta">
+                    <span class="status-pill"><span class="status-dot"></span>Markets Open</span>
+                    <span class="last-updated" id="lastUpdated">Updated: --</span>
                 </div>
             </div>
+
+            <div class="market-controls">
+                <div class="search-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="search" class="search-input" id="tickerSearch" placeholder="Search symbol or asset…" aria-label="Search live market symbols">
+                </div>
+                <div class="filter-group" role="group" aria-label="Filter live markets by asset class">
+                    <button class="filter-btn active" onclick="setTickerFilter('all', this)" aria-pressed="true">All</button>
+                    <button class="filter-btn" onclick="setTickerFilter('index', this)" aria-pressed="false">Indices</button>
+                    <button class="filter-btn" onclick="setTickerFilter('stock', this)" aria-pressed="false">Equities</button>
+                    <button class="filter-btn" onclick="setTickerFilter('crypto', this)" aria-pressed="false">Crypto</button>
+                    <button class="filter-btn" onclick="setTickerFilter('commodity', this)" aria-pressed="false">Commodities</button>
+                </div>
+            </div>
+
+            <div class="market-summary" id="marketSummaryCards">
+                <!-- Populated by JavaScript with performance highlights -->
+            </div>
+
             <div class="ticker-wrap">
                 <div class="ticker-track" id="tickerGrid">
                     <!-- Populated by JavaScript; items duplicated for smooth, continuous scroll -->
@@ -2832,8 +3126,8 @@
         <div class="results-section" id="resultsSection">
             <!-- Model Tabs -->
             <div class="model-tabs">
-                <button class="model-tab active" onclick="switchModel('ema')">EMA Model</button>
-                <button class="model-tab" onclick="switchModel('smc')">EMA + SMC Model</button>
+                <button class="model-tab active" onclick="switchModel('ema', this)">EMA Model</button>
+                <button class="model-tab" onclick="switchModel('smc', this)">EMA + SMC Model</button>
             </div>
 
             <!-- EMA Model Content -->
@@ -3226,7 +3520,7 @@
         }
 
         // ===== SMOOTH SCROLL TO SECTIONS =====
-        function scrollToSection(sectionId) {
+        function scrollToSection(sectionId, button) {
             // Map section IDs to actual elements
             const sectionMap = {
                 'live-ticker': '.live-ticker',
@@ -3249,12 +3543,51 @@
                 document.querySelectorAll('.nav-btn').forEach(btn => {
                     btn.classList.remove('active');
                 });
-                event.target?.classList.add('active');
+                if (button) {
+                    button.classList.add('active');
+                }
             }
         }
 
+        .ticker-meta {
+            display: flex;
+            gap: 0.75rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .ticker-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .ticker-meta span::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .ticker-meta .high::before {
+            background: var(--success);
+        }
+
+        .ticker-meta .low::before {
+            background: var(--danger);
+        }
+
+        .ticker-empty {
+            width: 100%;
+            text-align: center;
+            color: var(--text-muted);
+            font-weight: 600;
+            padding: 2.5rem 1rem;
+        }
+
         // ===== SECTION MANAGEMENT =====
-        function showSection(section) {
+        function showSection(section, button) {
             // Hide all sections
             document.querySelectorAll('.section-content').forEach(el => {
                 el.classList.remove('active');
@@ -3271,7 +3604,9 @@
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            event.target.classList.add('active');
+            if (button) {
+                button.classList.add('active');
+            }
         }
 
         // ===== LIVE PRICE DATA =====
@@ -3287,6 +3622,9 @@
             { symbol: 'AAPL', name: 'Apple Inc.', price: 189.45, change: 2.15, type: 'stock', high: 192.50, low: 187.20, open: 185.60, volume: 52300000 },
             { symbol: 'MSFT', name: 'Microsoft Corp.', price: 418.20, change: 1.85, type: 'stock', high: 425.00, low: 412.80, open: 410.15, volume: 28900000 }
         ];
+
+        let tickerFilter = 'all';
+        let tickerSearchTerm = '';
 
         // ===== WATCHLIST MANAGEMENT =====
         let watchlist = JSON.parse(localStorage.getItem('tradingWatchlist')) || [];
@@ -3374,28 +3712,149 @@
         function initializeWatchlist() {
             renderWatchlist();
         }
-        function initializeTicker() {
+        function formatPrice(value) {
+            return value.toLocaleString('en-US', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+        }
+
+        function formatCompactNumber(value) {
+            if (!value) return '0';
+            const absValue = Math.abs(value);
+            if (absValue >= 1e12) return `${(value / 1e12).toFixed(1)}T`;
+            if (absValue >= 1e9) return `${(value / 1e9).toFixed(1)}B`;
+            if (absValue >= 1e6) return `${(value / 1e6).toFixed(1)}M`;
+            if (absValue >= 1e3) return `${(value / 1e3).toFixed(1)}K`;
+            return value.toFixed(0);
+        }
+
+        function matchesFilter(market) {
+            return tickerFilter === 'all' || market.type === tickerFilter;
+        }
+
+        function matchesSearch(market) {
+            if (!tickerSearchTerm) return true;
+            const term = tickerSearchTerm.toLowerCase();
+            return market.symbol.toLowerCase().includes(term) || market.name.toLowerCase().includes(term);
+        }
+
+        function updateLastUpdated() {
+            const lastUpdatedEl = document.getElementById('lastUpdated');
+            if (!lastUpdatedEl) return;
+            const now = new Date();
+            lastUpdatedEl.textContent = `Updated ${now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}`;
+            lastUpdatedEl.setAttribute('data-timestamp', now.toISOString());
+        }
+
+        function renderMarketSummary(markets = liveMarkets) {
+            const summaryContainer = document.getElementById('marketSummaryCards');
+            if (!summaryContainer) return;
+
+            const dataset = markets.length ? markets : liveMarkets;
+
+            if (!dataset.length) {
+                summaryContainer.innerHTML = `
+                    <div class="summary-card">
+                        <div class="summary-label">Market Overview</div>
+                        <div class="summary-value">No Data</div>
+                        <div class="summary-subtext">Add instruments to monitor market performance.</div>
+                    </div>
+                `;
+                return;
+            }
+
+            const sortedByChangeDesc = [...dataset].sort((a, b) => b.change - a.change);
+            const sortedByChangeAsc = [...dataset].sort((a, b) => a.change - b.change);
+
+            const topGainer = sortedByChangeDesc[0];
+            let topDecliner = sortedByChangeAsc[0] || null;
+            if (topDecliner && topGainer && topDecliner.symbol === topGainer.symbol) {
+                topDecliner = sortedByChangeAsc.length > 1 ? sortedByChangeAsc[1] : null;
+            }
+
+            const advancers = dataset.filter(m => m.change >= 0).length;
+            const decliners = dataset.length - advancers;
+            const breadth = dataset.length ? (advancers / dataset.length) * 100 : 0;
+            const totalVolume = dataset.reduce((acc, item) => acc + (item.volume || 0), 0);
+            const avgChange = dataset.length ? dataset.reduce((acc, item) => acc + item.change, 0) / dataset.length : 0;
+
+            const cards = [
+                {
+                    label: 'Top Gainer',
+                    value: topGainer ? topGainer.symbol : '—',
+                    subtext: topGainer ? `▲ ${Math.abs(topGainer.change).toFixed(2)}% • $${formatPrice(topGainer.price)}` : 'Awaiting data',
+                    modifier: 'positive'
+                },
+                {
+                    label: 'Top Decliner',
+                    value: topDecliner ? topDecliner.symbol : '—',
+                    subtext: topDecliner
+                        ? `${topDecliner.change < 0 ? '▼' : '▲'} ${Math.abs(topDecliner.change).toFixed(2)}% • $${formatPrice(topDecliner.price)}`
+                        : (dataset.length ? 'All assets advancing' : 'Awaiting data'),
+                    modifier: topDecliner && topDecliner.change < 0 ? 'negative' : ''
+                },
+                {
+                    label: 'Market Breadth',
+                    value: dataset.length ? `${advancers} ↑ / ${decliners} ↓` : '—',
+                    subtext: dataset.length ? `${breadth.toFixed(0)}% of tracked assets are higher` : 'No active instruments',
+                    modifier: breadth >= 50 ? 'positive' : 'negative'
+                },
+                {
+                    label: 'Aggregate Volume',
+                    value: totalVolume ? `${formatCompactNumber(totalVolume)}` : '—',
+                    subtext: dataset.length ? `Avg Δ ${avgChange >= 0 ? '+' : ''}${avgChange.toFixed(2)}%` : 'Awaiting data',
+                    modifier: avgChange > 0 ? 'positive' : (avgChange < 0 ? 'negative' : '')
+                }
+            ];
+
+            summaryContainer.innerHTML = cards.map(card => `
+                <div class="summary-card ${card.modifier || ''}">
+                    <div class="summary-label">${card.label}</div>
+                    <div class="summary-value">${card.value}</div>
+                    <div class="summary-subtext">${card.subtext}</div>
+                </div>
+            `).join('');
+        }
+
+        function renderTicker() {
             const tickerGrid = document.getElementById('tickerGrid');
-            // Build items string
-            const items = liveMarkets.map(market => `
-                <div class="ticker-item" onclick="showInstrumentDetails('${market.symbol}')" role="button" tabindex="0">
+            if (!tickerGrid) return;
+
+            const filteredMarkets = liveMarkets.filter(market => matchesFilter(market) && matchesSearch(market));
+
+            if (filteredMarkets.length === 0) {
+                tickerGrid.innerHTML = `<div class="ticker-empty">No markets match your filters yet. Adjust your search to see live prices.</div>`;
+                tickerGrid.style.animation = 'none';
+                renderMarketSummary([]);
+                updateLastUpdated();
+                return;
+            }
+
+            const items = filteredMarkets.map(market => `
+                <div class="ticker-item" onclick="showInstrumentDetails('${market.symbol}')" role="button" tabindex="0" aria-label="View ${market.name} details">
                     <div class="ticker-symbol">${market.symbol}</div>
                     <div class="ticker-name">${market.name}</div>
-                    <div class="ticker-price">$${market.price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                    <div class="ticker-price">$${formatPrice(market.price)}</div>
                     <div class="ticker-change ${market.change >= 0 ? 'positive' : 'negative'}">
                         ${market.change >= 0 ? '▲' : '▼'} ${Math.abs(market.change).toFixed(2)}%
+                    </div>
+                    <div class="ticker-meta">
+                        <span class="high">H: $${formatPrice(market.high)}</span>
+                        <span class="low">L: $${formatPrice(market.low)}</span>
                     </div>
                 </div>
             `).join('');
 
-            // Duplicate items so the animation can loop seamlessly
-            tickerGrid.innerHTML = items + items;
+            tickerGrid.innerHTML = filteredMarkets.length > 1 ? items + items : items;
 
-            // Set animation duration proportional to number of items (min 12s)
-            const durationSeconds = Math.max(12, liveMarkets.length * 6);
-            tickerGrid.style.animation = `scroll-left ${durationSeconds}s linear infinite`;
+            if (filteredMarkets.length > 1) {
+                const durationSeconds = Math.max(14, filteredMarkets.length * 6);
+                tickerGrid.style.animation = `scroll-left ${durationSeconds}s linear infinite`;
+            } else {
+                tickerGrid.style.animation = 'none';
+            }
 
-            // Make ticker-item keyboard accessible
             Array.from(tickerGrid.querySelectorAll('.ticker-item')).forEach(el => {
                 el.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
@@ -3404,16 +3863,50 @@
                     }
                 });
             });
+
+            renderMarketSummary(filteredMarkets);
+            updateLastUpdated();
+        }
+
+        function setTickerFilter(filter, button) {
+            tickerFilter = filter;
+            document.querySelectorAll('.filter-group .filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-pressed', 'false');
+            });
+            if (button) {
+                button.classList.add('active');
+                button.setAttribute('aria-pressed', 'true');
+            }
+            renderTicker();
+        }
+
+        function attachTickerControls() {
+            const searchInput = document.getElementById('tickerSearch');
+            if (searchInput) {
+                searchInput.addEventListener('input', (event) => {
+                    tickerSearchTerm = event.target.value.trim().toLowerCase();
+                    renderTicker();
+                });
+            }
+        }
+
+        function initializeTicker() {
+            attachTickerControls();
+            renderTicker();
         }
 
         // Update prices every 5 seconds (simulated)
         function updateLivePrices() {
             liveMarkets.forEach(market => {
-                const change = (Math.random() - 0.5) * 0.5;
-                market.change += change;
-                market.price += (Math.random() - 0.5) * market.price * 0.001;
+                const priceDrift = (Math.random() - 0.5) * market.price * 0.003;
+                market.price = Math.max(0, market.price + priceDrift);
+                market.change += (Math.random() - 0.5) * 0.4;
+                market.change = Math.max(-8, Math.min(8, market.change));
+                market.high = Math.max(market.high, market.price);
+                market.low = Math.min(market.low, market.price);
             });
-            initializeTicker();
+            renderTicker();
         }
 
         setInterval(updateLivePrices, 5000);
@@ -4078,12 +4571,14 @@
         }
 
         // Switch between models
-        function switchModel(model) {
+        function switchModel(model, tab) {
             // Update tabs
-            document.querySelectorAll('.model-tab').forEach(tab => {
-                tab.classList.remove('active');
+            document.querySelectorAll('.model-tab').forEach(modelTab => {
+                modelTab.classList.remove('active');
             });
-            event.target.classList.add('active');
+            if (tab) {
+                tab.classList.add('active');
+            }
 
             // Update content
             document.querySelectorAll('.model-content').forEach(content => {
@@ -4098,11 +4593,13 @@
         }
 
         // Show section
-        function showSection(section) {
+        function showSection(section, button) {
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            event.target.classList.add('active');
+            if (button) {
+                button.classList.add('active');
+            }
 
             // Here you would implement section switching logic
             console.log('Switching to section:', section);
