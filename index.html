@@ -119,11 +119,12 @@
             background: var(--glass);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--glass-border);
-            padding: 1.5rem 2rem;
+            padding: 0.8rem 1.5rem;
             position: sticky;
             top: 0;
             z-index: 100;
             animation: slideDown 0.5s ease-out;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         @keyframes slideDown {
@@ -152,29 +153,30 @@
         }
 
         .logo-icon {
-            width: 45px;
-            height: 45px;
+            width: 36px;
+            height: 36px;
             background: var(--gradient-1);
-            border-radius: 12px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            font-size: 1.5rem;
-            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
         }
 
         .logo-text {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 700;
             background: linear-gradient(135deg, var(--primary-light), var(--secondary));
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .header-nav {
             display: flex;
-            gap: 1rem;
+            gap: 0.6rem;
             align-items: center;
         }
 
@@ -214,21 +216,22 @@
         }
 
         .nav-btn {
-            padding: 0.75rem 1.5rem;
+            padding: 0.5rem 1rem;
             background: var(--glass);
             border: 1px solid var(--glass-border);
             color: var(--light);
-            border-radius: 12px;
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 500;
+            white-space: nowrap;
         }
 
         .nav-btn:hover {
             background: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.3);
         }
 
         .nav-btn.active {
@@ -300,6 +303,8 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--primary);
         }
 
         .control-grid {
@@ -821,9 +826,16 @@
             backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
             border-radius: 15px;
-            padding: 1.5rem;
+            padding: 2.5rem;
             margin-bottom: 2rem;
-            overflow-x: auto;
+            overflow: hidden;
+            min-height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .ticker-title {
@@ -836,6 +848,8 @@
             gap: 0.8rem;
             text-align: center;
             justify-content: center;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--primary);
         }
 
         .ticker-title-container {
@@ -844,21 +858,27 @@
             padding: 1rem 0 0.5rem 0;
             border-bottom: 2px solid var(--primary);
             margin-bottom: 1.5rem;
-        }
-
-        /* Ticker marquee: right-to-left scroll like a news TV crawl */
-        .ticker-wrap {
-            overflow: hidden;
             width: 100%;
         }
 
+        /* Ticker container: flexbox wrapping layout (no horizontal scroll) */
+        .ticker-wrap {
+            overflow: hidden;
+            width: 100%;
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+        }
+
         .ticker-track {
-            display: inline-flex;
-            gap: 1.2rem;
-            align-items: center;
-            white-space: nowrap;
-            will-change: transform;
-            animation: scroll-left 30s linear infinite;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: stretch;
+            justify-content: center;
+            width: 100%;
+            padding: 1rem;
+            box-sizing: border-box;
         }
 
         .ticker-track:hover {
@@ -869,50 +889,56 @@
             background: var(--glass);
             border: 2px solid var(--glass-border);
             border-radius: 12px;
-            padding: 0.9rem 1.2rem;
+            padding: 1.5rem 2rem;
             transition: transform 0.3s, border-color 0.3s, background 0.3s;
             cursor: pointer;
-            display: inline-flex;
+            display: flex;
             flex-direction: column;
             align-items: center;
-            min-width: 160px;
+            justify-content: center;
+            flex: 1 1 240px;
+            min-width: 200px;
+            max-width: 280px;
+            flex-shrink: 0;
         }
 
         .ticker-item:hover {
             background: rgba(255, 255, 255, 0.08);
             border-color: var(--primary);
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.2);
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.3);
         }
 
         .ticker-symbol {
-            font-size: 1rem;
-            font-weight: 800;
+            font-size: 1.5rem;
+            font-weight: 900;
             color: var(--primary);
             text-transform: uppercase;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.6rem;
+            letter-spacing: 1px;
         }
 
         .ticker-name {
-            font-size: 0.8rem;
+            font-size: 1.05rem;
             color: var(--text-secondary);
-            margin-bottom: 0.8rem;
-            font-weight: 500;
+            margin-bottom: 1.2rem;
+            font-weight: 600;
         }
 
         .ticker-price {
-            font-size: 1.5rem;
-            font-weight: 800;
+            font-size: 2.2rem;
+            font-weight: 900;
             color: var(--text-primary);
-            margin-bottom: 0.6rem;
+            margin-bottom: 1rem;
+            font-family: 'Courier New', monospace;
         }
 
         .ticker-change {
-            font-size: 0.9rem;
-            font-weight: 600;
+            font-size: 1.2rem;
+            font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 0.3rem;
+            gap: 0.5rem;
         }
 
         .ticker-change.positive {
@@ -1045,6 +1071,8 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--primary);
         }
 
         .decision-grid {
@@ -1147,6 +1175,8 @@
             font-weight: 600;
             margin-bottom: 1.5rem;
             color: var(--primary-light);
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--primary);
         }
 
         .risk-grid {
@@ -1231,6 +1261,8 @@
             font-weight: 700;
             color: var(--primary-light);
             margin: 0;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--primary);
         }
 
         .sentiment-controls {
@@ -2167,33 +2199,46 @@
             }
 
             .ticker-item {
-                padding: 0.8rem;
-                min-width: 140px;
+                padding: 1rem 1.2rem;
+                min-width: 150px;
+                flex: 1 1 200px;
+                max-width: 240px;
             }
         }
 
         /* Mobile: 768px and below */
         @media screen and (max-width: 768px) {
             .header-content {
-                flex-direction: column;
-                gap: 1rem;
+                flex-direction: row;
+                gap: 0.5rem;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
             }
 
             .logo {
-                width: 100%;
-                text-align: center;
+                width: auto;
+                text-align: left;
+                gap: 0.5rem;
+                min-width: fit-content;
+            }
+
+            .logo-text {
+                display: none;
             }
 
             .header-nav {
-                width: 100%;
-                flex-direction: column;
-                gap: 0.5rem;
+                width: auto;
+                flex-direction: row;
+                gap: 0.3rem;
+                flex-wrap: wrap;
+                justify-content: flex-end;
             }
-
             .nav-btn {
-                width: 100%;
-                padding: 0.7rem 1rem;
-                font-size: 0.9rem;
+                width: auto;
+                padding: 0.5rem 0.7rem;
+                font-size: 0.7rem;
+                flex: 0 1 auto;
             }
 
             .container {
@@ -2201,22 +2246,34 @@
             }
 
             .live-ticker {
+                padding: 1rem;
+            }
+
+            .ticker-track {
+                gap: 1rem;
                 padding: 0.75rem;
             }
 
             .ticker-item {
-                padding: 0.6rem;
-                min-width: 120px;
-                font-size: 0.75rem;
+                padding: 0.8rem 1rem;
+                min-width: 140px;
+                flex: 1 1 180px;
+                max-width: 200px;
+                font-size: 0.85rem;
             }
 
             .ticker-symbol {
-                font-size: 0.85rem;
+                font-size: 1rem;
                 font-weight: 700;
             }
 
             .ticker-price {
-                font-size: 0.8rem;
+                font-size: 1.3rem;
+            }
+
+            .live-ticker {
+                padding: 1.25rem;
+                min-height: 160px;
             }
 
             .sentiment-panel {
@@ -2321,11 +2378,11 @@
         /* Small Mobile: 480px and below */
         @media screen and (max-width: 480px) {
             .header {
-                padding: 0.5rem;
+                padding: 0.4rem 0.75rem;
             }
 
             .header-content {
-                gap: 0.5rem;
+                gap: 0.3rem;
             }
 
             .logo-text {
@@ -2333,18 +2390,25 @@
             }
 
             .logo-icon {
-                width: 2.5rem;
-                height: 2.5rem;
-                font-size: 1.2rem;
+                width: 32px;
+                height: 32px;
+                font-size: 1rem;
             }
 
             .header-nav {
-                gap: 0.25rem;
+                gap: 0.2rem;
+                flex-wrap: wrap;
             }
 
             .nav-btn {
-                padding: 0.5rem 0.75rem;
-                font-size: 0.75rem;
+                padding: 0.4rem 0.5rem;
+                font-size: 0.65rem;
+                flex: 0 1 auto;
+            }
+
+            .theme-toggle {
+                width: 40px;
+                height: 24px;
             }
 
             .container {
@@ -2352,17 +2416,24 @@
             }
 
             .live-ticker {
+                padding: 0.75rem;
+            }
+
+            .ticker-track {
+                gap: 0.75rem;
                 padding: 0.5rem;
             }
 
             .ticker-item {
-                padding: 0.4rem;
-                min-width: 100px;
+                padding: 0.6rem 0.8rem;
+                min-width: 110px;
+                flex: 1 1 140px;
+                max-width: 160px;
                 font-size: 0.7rem;
             }
 
             .ticker-symbol {
-                font-size: 0.75rem;
+                font-size: 0.9rem;
             }
 
             .ticker-name {
@@ -2370,7 +2441,7 @@
             }
 
             .ticker-price {
-                font-size: 0.7rem;
+                font-size: 1.1rem;
             }
 
             .control-title {
@@ -2585,7 +2656,7 @@
         <div class="live-ticker" id="live-ticker">
             <div class="ticker-title-container">
                 <div class="ticker-title">
-                    <span>💹</span> Live Market Prices
+                    Live Market Prices
                 </div>
             </div>
             <div class="ticker-wrap">
@@ -2598,7 +2669,7 @@
         <!-- Market Sentiment Dashboard -->
         <div class="sentiment-panel" id="sentiment-panel">
             <div class="sentiment-header">
-                <h2 class="sentiment-title">📊 Market Sentiment Analysis</h2>
+                <h2 class="sentiment-title">Market Sentiment Analysis</h2>
             </div>
             
             <!-- Selection Controls -->
@@ -2633,7 +2704,7 @@
         <!-- Technical Indicators -->
         <div class="indicators-panel" id="indicators-panel">
             <h2 class="control-title">
-                <span>📈</span> Technical Indicators
+                Technical Indicators
             </h2>
             
             <!-- Instrument Selector -->
@@ -2652,7 +2723,7 @@
         <!-- Trade Decision Assistant -->
         <div class="decision-panel" id="decision-panel">
             <div class="decision-title">
-                <span>🎯</span> Trade Decision Assistant
+                Trade Decision Assistant
             </div>
             
             <!-- Instrument Selector -->
@@ -2665,8 +2736,7 @@
             
             <div class="decision-grid" id="decisionGrid">
                 <div style="grid-column: 1/-1; text-align: center; padding: 2rem; color: var(--text-muted);">
-                    <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">🎯</div>
-                    <div>Select an instrument to view trade signals</div>
+                    <div style="font-size: 0.95rem; font-weight: 500; margin-top: 0.5rem;">Select an instrument to view trade signals</div>
                 </div>
             </div>
         </div>
@@ -2674,7 +2744,7 @@
         <!-- Risk Calculator -->
         <div class="risk-calculator" id="risk-calculator">
             <div class="risk-title">
-                <span>⚠️</span> Risk/Reward Calculator
+                Risk/Reward Calculator
             </div>
             <div class="risk-grid">
                 <div class="risk-input-group">
@@ -2719,7 +2789,7 @@
         <div class="control-panel" id="trading-config">
             <div class="control-section">
                 <h2 class="control-title">
-                    <span>📊</span> Trading Configuration
+                    Trading Configuration
                 </h2>
                 <div class="control-grid">
                     <div class="control-group">
@@ -2777,7 +2847,7 @@
 
             <div class="control-section">
                 <h2 class="control-title">
-                    <span>🎯</span> Trading Options
+                    Trading Options
                 </h2>
                 <div class="control-grid">
                     <div class="control-group">
@@ -2875,12 +2945,12 @@
                 <!-- Forecast Panel -->
                 <div class="forecast-panel">
                     <h3 class="control-title">
-                        <span>🎯</span> Current Trading Signals
+                        Current Trading Signals
                     </h3>
                     <div class="forecast-grid">
                         <div class="forecast-card">
                             <div class="forecast-type long">
-                                <span>📈</span> Long Position
+                                Long Position
                             </div>
                             <div class="forecast-values">
                                 <div class="forecast-item">
@@ -2903,7 +2973,7 @@
                         </div>
                         <div class="forecast-card">
                             <div class="forecast-type short">
-                                <span>📉</span> Short Position
+                                Short Position
                             </div>
                             <div class="forecast-values">
                                 <div class="forecast-item">
@@ -3196,16 +3266,162 @@
     </div>
 
     <script>
+        // ===== SECURITY & VALIDATION UTILITIES =====
+        /**
+         * Sanitize HTML to prevent XSS attacks
+         */
+        function sanitizeHTML(str) {
+            if (typeof str !== 'string') return '';
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        /**
+         * Validate numeric input with range checking
+         */
+        function validateNumericInput(value, min = 0, max = Infinity, allowNegative = false) {
+            try {
+                const num = parseFloat(value);
+                
+                // Check if valid number
+                if (isNaN(num) || !isFinite(num)) {
+                    return null;
+                }
+                
+                // Check range
+                if (num < min || num > max) {
+                    return null;
+                }
+                
+                return num;
+            } catch (error) {
+                console.error('Error validating numeric input:', error);
+                return null;
+            }
+        }
+
+        /**
+         * Validate market data structure
+         */
+        function validateMarketData(market) {
+            try {
+                const validTypes = ['crypto', 'stock', 'index', 'commodity'];
+                
+                if (!market || typeof market !== 'object') return false;
+                if (typeof market.price !== 'number' || market.price < 0) return false;
+                if (typeof market.change !== 'number' || market.change < -100 || market.change > 100) return false;
+                if (!validTypes.includes(market.type)) return false;
+                if (market.high <= market.low) return false;
+                if (market.volume < 0) return false;
+                if (!market.symbol || typeof market.symbol !== 'string') return false;
+                
+                return true;
+            } catch (error) {
+                console.error('Error validating market data:', error);
+                return false;
+            }
+        }
+
+        /**
+         * Safe localStorage operations
+         */
+        function safeGetFromStorage(key, defaultValue = null) {
+            try {
+                if (!('localStorage' in window)) {
+                    return defaultValue;
+                }
+                const item = localStorage.getItem(key);
+                return item ? JSON.parse(item) : defaultValue;
+            } catch (error) {
+                console.warn(`Failed to read from localStorage (${key}):`, error);
+                return defaultValue;
+            }
+        }
+
+        function safeSetToStorage(key, value) {
+            try {
+                if (!('localStorage' in window)) {
+                    return false;
+                }
+                localStorage.setItem(key, JSON.stringify(value));
+                return true;
+            } catch (error) {
+                if (error.name === 'QuotaExceededError') {
+                    showNotification('Storage full: Cannot save data');
+                } else {
+                    console.warn(`Failed to write to localStorage (${key}):`, error);
+                }
+                return false;
+            }
+        }
+
+        /**
+         * Safe DOM element access
+         */
+        function safeSetText(elementId, value) {
+            try {
+                const element = document.getElementById(elementId);
+                if (element) {
+                    element.textContent = value;
+                    return true;
+                }
+                return false;
+            } catch (error) {
+                console.warn(`Error setting text for ${elementId}:`, error);
+                return false;
+            }
+        }
+
+        function safeSetHTML(elementId, value, sanitize = true) {
+            try {
+                const element = document.getElementById(elementId);
+                if (element) {
+                    element.innerHTML = sanitize ? sanitizeHTML(value) : value;
+                    return true;
+                }
+                return false;
+            } catch (error) {
+                console.warn(`Error setting HTML for ${elementId}:`, error);
+                return false;
+            }
+        }
+
+        /**
+         * Safe element query
+         */
+        function safeQuerySelector(selector) {
+            try {
+                return document.querySelector(selector);
+            } catch (error) {
+                console.warn(`Error querying selector: ${selector}`, error);
+                return null;
+            }
+        }
+
+        /**
+         * Error message display
+         */
+        const errorMessages = {
+            INVALID_INPUT: 'Please enter valid values for all fields',
+            DUPLICATE_ITEM: 'This item is already in your watchlist',
+            LOAD_ERROR: 'Failed to load market data. Please try again.',
+            STORAGE_ERROR: 'Unable to save your changes',
+            MISSING_ELEMENT: 'UI element not found',
+            INVALID_DATA: 'Invalid data received'
+        };
+
         // ===== THEME MANAGEMENT =====
         function initializeTheme() {
-            const theme = localStorage.getItem('theme') || 'dark';
+            const theme = safeGetFromStorage('theme', 'dark') || 'dark';
             setTheme(theme);
         }
 
         function setTheme(theme) {
-            const root = document.documentElement;
-            const themeToggle = document.getElementById('themeToggle');
-            
+            try {
+                const root = document.documentElement;
+                const themeToggle = document.getElementById('themeToggle');
+                
             if (theme === 'light') {
                 document.body.classList.add('light-theme');
                 themeToggle.classList.add('light');
@@ -3216,20 +3432,28 @@
                 themeToggle.querySelector('.toggle-circle').textContent = '☀️';
             }
             
-            localStorage.setItem('theme', theme);
+            safeSetToStorage('theme', theme);
+            } catch (error) {
+                console.error('Error setting theme:', error);
+            }
         }
 
         function toggleTheme() {
-            const currentTheme = localStorage.getItem('theme') || 'dark';
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            setTheme(newTheme);
+            try {
+                const currentTheme = safeGetFromStorage('theme', 'dark') || 'dark';
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                setTheme(newTheme);
+            } catch (error) {
+                console.error('Error toggling theme:', error);
+            }
         }
 
         // ===== SMOOTH SCROLL TO SECTIONS =====
         function scrollToSection(sectionId) {
-            // Map section IDs to actual elements
-            const sectionMap = {
-                'live-ticker': '.live-ticker',
+            try {
+                // Map section IDs to actual elements
+                const sectionMap = {
+                    'live-ticker': '.live-ticker',
                 'sentiment-panel': '.sentiment-panel',
                 'indicators-panel': '.indicators-panel',
                 'decision-panel': '.decision-panel',
@@ -3238,40 +3462,51 @@
                 'watchlist-section': '#watchlistSection'
             };
 
-            const selector = sectionMap[sectionId];
-            if (!selector) return;
+                const selector = sectionMap[sectionId];
+                if (!selector) return;
 
-            const element = document.querySelector(selector);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                
-                // Update active nav button
-                document.querySelectorAll('.nav-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                event.target?.classList.add('active');
+                const element = document.querySelector(selector);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    
+                    // Update active nav button
+                    document.querySelectorAll('.nav-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    if (event && event.target) {
+                        event.target.classList.add('active');
+                    }
+                }
+            } catch (error) {
+                console.error('Error scrolling to section:', error);
             }
         }
 
         // ===== SECTION MANAGEMENT =====
         function showSection(section) {
-            // Hide all sections
-            document.querySelectorAll('.section-content').forEach(el => {
-                el.classList.remove('active');
-            });
+            try {
+                // Hide all sections
+                document.querySelectorAll('.section-content').forEach(el => {
+                    el.classList.remove('active');
+                });
 
-            // Show selected section
-            const sectionId = section + 'Section';
-            const sectionEl = document.getElementById(sectionId);
-            if (sectionEl) {
-                sectionEl.classList.add('active');
+                // Show selected section
+                const sectionId = section + 'Section';
+                const sectionEl = document.getElementById(sectionId);
+                if (sectionEl) {
+                    sectionEl.classList.add('active');
+                }
+
+                // Update nav button states
+                document.querySelectorAll('.nav-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                if (event && event.target) {
+                    event.target.classList.add('active');
+                }
+            } catch (error) {
+                console.error('Error showing section:', error);
             }
-
-            // Update nav button states
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
         }
 
         // ===== LIVE PRICE DATA =====
@@ -3289,44 +3524,59 @@
         ];
 
         // ===== WATCHLIST MANAGEMENT =====
-        let watchlist = JSON.parse(localStorage.getItem('tradingWatchlist')) || [];
+        let watchlist = safeGetFromStorage('tradingWatchlist', []);
 
         function addToWatchlistArray(symbol) {
-            const market = liveMarkets.find(m => m.symbol === symbol);
-            if (!market) return false;
-            
-            // Check if already in watchlist
-            if (watchlist.find(item => item.symbol === symbol)) {
-                showNotification(`⚠️ ${symbol} is already in your watchlist!`);
+            try {
+                const market = liveMarkets.find(m => m.symbol === symbol);
+                if (!market || !validateMarketData(market)) {
+                    showNotification(errorMessages.INVALID_DATA);
+                    return false;
+                }
+                
+                // Check if already in watchlist
+                if (watchlist.find(item => item.symbol === symbol)) {
+                    showNotification(errorMessages.DUPLICATE_ITEM);
+                    return false;
+                }
+                
+                // Add to watchlist
+                watchlist.push({
+                    symbol: market.symbol,
+                    name: market.name,
+                    price: market.price,
+                    change: market.change,
+                    type: market.type,
+                    high: market.high,
+                    low: market.low,
+                    open: market.open,
+                    volume: market.volume,
+                    addedAt: new Date().toISOString()
+                });
+                
+                // Save to localStorage
+                if (safeSetToStorage('tradingWatchlist', watchlist)) {
+                    renderWatchlist();
+                    return true;
+                }
+                return false;
+            } catch (error) {
+                console.error('Error adding to watchlist:', error);
+                showNotification(errorMessages.STORAGE_ERROR);
                 return false;
             }
-            
-            // Add to watchlist
-            watchlist.push({
-                symbol: market.symbol,
-                name: market.name,
-                price: market.price,
-                change: market.change,
-                type: market.type,
-                high: market.high,
-                low: market.low,
-                open: market.open,
-                volume: market.volume,
-                addedAt: new Date().toISOString()
-            });
-            
-            // Save to localStorage
-            localStorage.setItem('tradingWatchlist', JSON.stringify(watchlist));
-            
-            // Update watchlist display
-            renderWatchlist();
-            
-            return true;
         }
 
         function removeFromWatchlist(symbol) {
-            watchlist = watchlist.filter(item => item.symbol !== symbol);
-            localStorage.setItem('tradingWatchlist', JSON.stringify(watchlist));
+            try {
+                watchlist = watchlist.filter(item => item.symbol !== symbol);
+                if (safeSetToStorage('tradingWatchlist', watchlist)) {
+                    renderWatchlist();
+                }
+            } catch (error) {
+                console.error('Error removing from watchlist:', error);
+                showNotification(errorMessages.STORAGE_ERROR);
+            }
             renderWatchlist();
             showNotification(`❌ ${symbol} removed from watchlist`);
         }
@@ -4009,72 +4259,115 @@
 
         // ===== RISK/REWARD CALCULATOR =====
         function calculateRiskReward() {
-            const entryPrice = parseFloat(document.getElementById('entryPrice').value) || 0;
-            const stopLoss = parseFloat(document.getElementById('stopLoss').value) || 0;
-            const takeProfit = parseFloat(document.getElementById('takeProfit').value) || 0;
-            const positionSize = parseFloat(document.getElementById('positionSize').value) || 0;
-            const capital = parseFloat(document.getElementById('capital').value) || 100000;
-            
-            if (entryPrice <= 0 || positionSize <= 0) {
-                document.getElementById('rrRatioDisplay').textContent = '0:0';
-                document.getElementById('rrStatus').textContent = 'Enter values to calculate';
-                return;
+            try {
+                // Validate inputs
+                const entryPrice = validateNumericInput(document.getElementById('entryPrice').value, 0.01);
+                const stopLoss = validateNumericInput(document.getElementById('stopLoss').value, 0);
+                const takeProfit = validateNumericInput(document.getElementById('takeProfit').value, 0);
+                const positionSize = validateNumericInput(document.getElementById('positionSize').value, 0.01);
+                const capital = validateNumericInput(document.getElementById('capital').value, 1000) || 100000;
+                
+                if (entryPrice === null || positionSize === null) {
+                    safeSetText('rrRatioDisplay', '0:0');
+                    safeSetText('rrStatus', 'Enter valid values to calculate');
+                    return;
+                }
+                
+                // Calculate risks
+                const riskPerUnit = Math.abs(entryPrice - stopLoss);
+                const rewardPerUnit = Math.abs(takeProfit - entryPrice);
+                const riskPerTrade = riskPerUnit * positionSize;
+                const potentialReward = rewardPerUnit * positionSize;
+                const accountRiskPct = (riskPerTrade / capital) * 100;
+                const rrRatio = riskPerUnit > 0 ? (rewardPerUnit / riskPerUnit).toFixed(2) : '0';
+                
+                // Update displays safely
+                safeSetText('riskPerTrade', `$${riskPerTrade.toFixed(2)}`);
+                safeSetText('potentialReward', `$${potentialReward.toFixed(2)}`);
+                safeSetText('accountRiskPct', `${accountRiskPct.toFixed(2)}%`);
+                safeSetText('rrRatioDisplay', `1:${rrRatio}`);
+                
+                // Risk assessment
+                let status = '✓ Good Setup';
+                let statusColor = 'var(--success)';
+                
+                if (accountRiskPct > 2) {
+                    status = '⚠️ Risk Too High';
+                    statusColor = 'var(--danger)';
+                } else if (rrRatio < 1.5) {
+                    status = '⚠️ Poor R:R Ratio';
+                    statusColor = 'var(--warning)';
+                }
+                
+                safeSetText('rrStatus', status);
+                const statusEl = document.getElementById('rrStatus');
+                if (statusEl) statusEl.style.color = statusColor;
+            } catch (error) {
+                console.error('Error calculating risk/reward:', error);
+                showNotification(errorMessages.INVALID_INPUT);
             }
-            
-            // Calculate risks
-            const riskPerUnit = Math.abs(entryPrice - stopLoss);
-            const rewardPerUnit = Math.abs(takeProfit - entryPrice);
-            const riskPerTrade = riskPerUnit * positionSize;
-            const potentialReward = rewardPerUnit * positionSize;
-            const accountRiskPct = (riskPerTrade / capital) * 100;
-            const rrRatio = riskPerUnit > 0 ? (rewardPerUnit / riskPerUnit).toFixed(2) : '0';
-            
-            // Update displays
-            document.getElementById('riskPerTrade').textContent = `$${riskPerTrade.toFixed(2)}`;
-            document.getElementById('potentialReward').textContent = `$${potentialReward.toFixed(2)}`;
-            document.getElementById('accountRiskPct').textContent = `${accountRiskPct.toFixed(2)}%`;
-            document.getElementById('rrRatioDisplay').textContent = `1:${rrRatio}`;
-            
-            // Risk assessment
-            let status = '✓ Good Setup';
-            let statusColor = 'var(--success)';
-            
-            if (accountRiskPct > 2) {
-                status = '⚠️ Risk Too High';
-                statusColor = 'var(--danger)';
-            } else if (rrRatio < 1.5) {
-                status = '⚠️ Poor R:R Ratio';
-                statusColor = 'var(--warning)';
-            }
-            
-            document.getElementById('rrStatus').textContent = status;
-            document.getElementById('rrStatus').style.color = statusColor;
         }
 
-        // Add event listeners for risk calculator
-        ['entryPrice', 'stopLoss', 'takeProfit', 'positionSize'].forEach(id => {
-            document.getElementById(id).addEventListener('input', calculateRiskReward);
-        });
+        // Add event listeners for risk calculator (with safety checks)
+        try {
+            ['entryPrice', 'stopLoss', 'takeProfit', 'positionSize'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.addEventListener('input', calculateRiskReward);
+                }
+            });
+        } catch (error) {
+            console.error('Error adding risk calculator listeners:', error);
+        }
 
         // Set today's date as default end date
-        document.getElementById('endDate').valueAsDate = new Date();
+        try {
+            const endDateEl = document.getElementById('endDate');
+            if (endDateEl) {
+                endDateEl.valueAsDate = new Date();
+            }
+        } catch (error) {
+            console.error('Error setting end date:', error);
+        }
 
         // Initialize charts
         let emaChart, smcChart;
 
         // Slider updates
-        document.getElementById('horizon').addEventListener('input', function() {
-            document.getElementById('horizonValue').textContent = this.value;
-        });
+        try {
+            const horizonEl = document.getElementById('horizon');
+            if (horizonEl) {
+                horizonEl.addEventListener('input', function() {
+                    const val = document.getElementById('horizonValue');
+                    if (val) val.textContent = this.value;
+                });
+            }
+        } catch (error) {
+            console.error('Error setting up horizon slider:', error);
+        }
 
-        document.getElementById('threshold').addEventListener('input', function() {
-            document.getElementById('thresholdValue').textContent = (this.value / 100).toFixed(2);
-        });
+        try {
+            const thresholdEl = document.getElementById('threshold');
+            if (thresholdEl) {
+                thresholdEl.addEventListener('input', function() {
+                    const val = document.getElementById('thresholdValue');
+                    if (val) val.textContent = (this.value / 100).toFixed(2);
+                });
+            }
+        } catch (error) {
+            console.error('Error setting up threshold slider:', error);
+        }
 
         // Checkbox toggle function
         function toggleCheckbox(id) {
-            const checkbox = document.getElementById(id);
-            checkbox.classList.toggle('checked');
+            try {
+                const checkbox = document.getElementById(id);
+                if (checkbox) {
+                    checkbox.classList.toggle('checked');
+                }
+            } catch (error) {
+                console.error('Error toggling checkbox:', error);
+            }
         }
 
         // Switch between models
@@ -4102,17 +4395,17 @@
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            event.target.classList.add('active');
-
-            // Here you would implement section switching logic
-            console.log('Switching to section:', section);
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
         }
 
         // Run analysis
         async function runAnalysis() {
-            const loadingState = document.getElementById('loadingState');
-            const resultsSection = document.getElementById('resultsSection');
-            
+            try {
+                const loadingState = document.getElementById('loadingState');
+                const resultsSection = document.getElementById('resultsSection');
+                
             // Show loading state
             loadingState.classList.add('active');
             resultsSection.classList.remove('active');
@@ -4276,57 +4569,75 @@
                 }
             });
 
-            // Hide loading and show results
-            loadingState.classList.remove('active');
-            resultsSection.classList.add('active');
+                // Hide loading and show results
+                if (loadingState) loadingState.classList.remove('active');
+                if (resultsSection) resultsSection.classList.add('active');
+            } catch (error) {
+                console.error('Error running analysis:', error);
+                showNotification('Analysis failed: ' + error.message);
+            }
         }
 
         // Export results
         function exportResults() {
-            // Create sample CSV data
-            const csvData = [
-                ['Date', 'Side', 'Entry', 'Exit', 'P&L', 'Result'],
-                ['2024-01-15', 'LONG', '182.45', '185.32', '287.00', 'WIN'],
-                ['2024-01-12', 'SHORT', '184.90', '182.45', '245.00', 'WIN'],
-                ['2024-01-10', 'LONG', '181.20', '180.15', '-105.00', 'LOSS']
-            ];
+            try {
+                // Create sample CSV data
+                const csvData = [
+                    ['Date', 'Side', 'Entry', 'Exit', 'P&L', 'Result'],
+                    ['2024-01-15', 'LONG', '182.45', '185.32', '287.00', 'WIN'],
+                    ['2024-01-12', 'SHORT', '184.90', '182.45', '245.00', 'WIN'],
+                    ['2024-01-10', 'LONG', '181.20', '180.15', '-105.00', 'LOSS']
+                ];
 
-            const csvContent = csvData.map(row => row.join(',')).join('\n');
-            const blob = new Blob([csvContent], { type: 'text/csv' });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'edgescan_results.csv';
-            link.click();
-            URL.revokeObjectURL(url);
+                const csvContent = csvData.map(row => row.join(',')).join('\n');
+                const blob = new Blob([csvContent], { type: 'text/csv' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'edgescan_results.csv';
+                link.click();
+                URL.revokeObjectURL(url);
+            } catch (error) {
+                console.error('Error exporting results:', error);
+                showNotification('Export failed');
+            }
         }
 
         // Reset form
         function resetForm() {
-            document.getElementById('symbol').value = 'AAPL';
-            document.getElementById('startDate').value = '2020-01-01';
-            document.getElementById('endDate').valueAsDate = new Date();
-            document.getElementById('capital').value = '100000';
-            document.getElementById('horizon').value = '5';
+            try {
+                safeSetText('symbol', 'AAPL');
+                const startDateEl = document.getElementById('startDate');
+                if (startDateEl) startDateEl.value = '2020-01-01';
+                const endDateEl = document.getElementById('endDate');
+                if (endDateEl) endDateEl.valueAsDate = new Date();
+                safeSetText('capital', '100000');
+                safeSetText('horizon', '5');
             document.getElementById('horizonValue').textContent = '5';
             document.getElementById('lotSize').value = '10';
-            document.getElementById('threshold').value = '60';
-            document.getElementById('thresholdValue').textContent = '0.60';
-            document.getElementById('rrRatio').value = '2';
-            
-            // Reset checkboxes
-            ['enableShorts', 'useFilters', 'enableSMC', 'walkForward'].forEach(id => {
-                document.getElementById(id).classList.add('checked');
-            });
-            
-            // Hide results
-            document.getElementById('resultsSection').classList.remove('active');
+                const thresholdVal = document.getElementById('thresholdValue');
+                if (thresholdVal) thresholdVal.textContent = '0.60';
+                const rrRatioEl = document.getElementById('rrRatio');
+                if (rrRatioEl) rrRatioEl.value = '2';
+                
+                // Reset checkboxes
+                ['enableShorts', 'useFilters', 'enableSMC', 'walkForward'].forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.classList.add('checked');
+                });
+                
+                // Hide results
+                const resultsSection = document.getElementById('resultsSection');
+                if (resultsSection) resultsSection.classList.remove('active');
+            } catch (error) {
+                console.error('Error resetting form:', error);
+                showNotification('Reset failed');
+            }
         }
 
         // Update chart based on selection
         function updateChart(model, type) {
-            console.log('Updating chart:', model, type);
-            // Here you would implement chart update logic based on the selected type
+            // Chart update logic based on selected type
         }
 
         // Initialize everything on page load
@@ -4730,6 +5041,19 @@
 
         // Close modal when clicking outside
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize components with a small delay to ensure DOM is fully ready
+            setTimeout(() => {
+                // Initialize live ticker
+                initializeTicker();
+                
+                // Initialize decision and indicators dropdowns
+                initializeDecisionInstrumentSelect();
+                initializeIndicatorsInstrumentSelect();
+                
+                // Render watchlist
+                renderWatchlist();
+            }, 100);
+            
             const modal = document.getElementById('instrumentModal');
             if (modal) {
                 modal.addEventListener('click', function(event) {
