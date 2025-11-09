@@ -766,10 +766,30 @@
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
+           @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
                 gap: 1rem;
+            }
+
+            .market-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .market-meta {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .market-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-group {
+                width: 100%;
+                justify-content: flex-start;
             }
 
             .control-grid {
@@ -2130,24 +2150,89 @@
     <div class="bg-animation"></div>
     
     <!-- Header -->
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">
-                <div class="logo-icon">SB</div>
-                <div class="logo-text">StrategyBuilder</div>
+    <header class="header" id="siteHeader">
+        <div class="header-content" style="align-items:center;">
+            <!-- left: initials logo -->
+            <div class="logo" style="display:flex;align-items:center;gap:.75rem;">
+                <div class="logo-icon" style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;">SK</div>
             </div>
-            <nav class="header-nav">
+
+            <!-- center: hamburger for mobile (on desktop the nav shows as before) -->
+            <div style="flex:1;display:flex;justify-content:center;">
+                <button id="mobileHamburger" class="mobile-hamburger" aria-label="Open menu">
+                    <span class="hamburger-lines"></span>
+                </button>
+            </div>
+
+            <!-- right: theme toggle stays on right -->
+            <div style="display:flex;align-items:center;gap:.75rem;">
+                <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle theme">
+                    <div class="toggle-circle">☀️</div>
+                </div>
+            </div>
+
+            <!-- Desktop nav preserved but will be hidden on mobile via CSS below -->
+            <nav class="header-nav" id="mainNav">
                 <button class="nav-btn active" onclick="scrollToSection('live-ticker')">Live Market</button>
                 <button class="nav-btn" onclick="scrollToSection('sentiment-panel')">Market Sentiment</button>
                 <button class="nav-btn" onclick="scrollToSection('indicators-panel')">Indicators</button>
                 <button class="nav-btn" onclick="scrollToSection('decision-panel')">Trade Decision</button>
                 <button class="nav-btn" onclick="scrollToSection('risk-calculator')">Risk/Reward</button>
                 <button class="nav-btn" onclick="scrollToSection('trading-config')">Backtesting</button>
-                <div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
-                    <div class="toggle-circle">☀️</div>
-                </div>
             </nav>
         </div>
+
+        <!-- Full-screen overlay menu (hidden until activated) -->
+        <div id="navOverlay" class="nav-overlay" aria-hidden="true">
+            <button id="overlayClose" class="overlay-close" aria-label="Close menu">✕</button>
+            <div class="overlay-menu">
+                <a class="overlay-link" href="#">Home</a>
+                <a class="overlay-link" href="#about">About</a>
+                <a class="overlay-link" href="#skills">Skills</a>
+                <a class="overlay-link" href="#projects">Projects</a>
+                <a class="overlay-link" href="#certificates">Certificates</a>
+                <a class="overlay-link" href="#contact">Contact</a>
+            </div>
+        </div>
+
+        <!-- Small inline styles for mobile header/overlay to avoid editing head stylesheet separately -->
+        <style>
+            /* mobile hamburger */
+            .mobile-hamburger{
+                background: transparent;
+                border: none;
+                width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;
+            }
+            .mobile-hamburger .hamburger-lines{display:block;width:22px;height:14px;position:relative}
+            .mobile-hamburger .hamburger-lines::before,.mobile-hamburger .hamburger-lines::after,.mobile-hamburger .hamburger-lines{content:'';position:absolute;left:0;right:0;height:2px;background:var(--text-primary);border-radius:2px}
+            .mobile-hamburger .hamburger-lines::before{top:0}
+            .mobile-hamburger .hamburger-lines{top:6px}
+            .mobile-hamburger .hamburger-lines::after{bottom:0}
+
+            /* overlay */
+            .nav-overlay{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:120px;background:linear-gradient(180deg, rgba(6,7,13,0.98) 0%, rgba(6,7,13,0.96) 100%);z-index:1200;opacity:0;visibility:hidden;transition:opacity 260ms ease,visibility 260ms}
+            .nav-overlay.open{opacity:1;visibility:visible}
+            .overlay-close{position:absolute;top:34px;left:50%;transform:translateX(-50%);background:transparent;border:none;color:var(--text-primary);font-size:28px;cursor:pointer}
+            .overlay-menu{display:flex;flex-direction:column;gap:30px;align-items:center}
+            .overlay-link{color:var(--text-secondary);font-size:20px;text-decoration:none;font-weight:600;padding:8px 16px}
+            .overlay-link:hover{color:var(--text-primary)}
+
+            /* Desktop: show normal nav; Mobile: hide mainNav and show centric layout */
+            @media (max-width: 900px){
+                #mainNav{display:none!important}
+                .logo-text{display:none}
+                .logo-icon{font-weight:800}
+                .header{padding:12px 16px}
+                .theme-toggle{margin-left:6px}
+                /* make overlay links bigger for phone */
+                .overlay-link{font-size:22px}
+                .overlay-menu{gap:28px}
+            }
+            @media (min-width: 901px){
+                /* ensure overlay hidden on desktop */
+                .mobile-hamburger{display:none}
+            }
+        </style>
     </header>
 
     <!-- Main Container -->
@@ -4324,6 +4409,33 @@
         });
 
     </script>
+    <script>
+        // Mobile overlay menu script
+        (function(){
+            const hamburger = document.getElementById('mobileHamburger');
+            const overlay = document.getElementById('navOverlay');
+            const overlayClose = document.getElementById('overlayClose');
+            function openOverlay(){
+                if(!overlay) return;
+                overlay.classList.add('open');
+                overlay.setAttribute('aria-hidden','false');
+                try{ document.documentElement.style.overflow = 'hidden'; }catch(e){}
+            }
+            function closeOverlay(){
+                if(!overlay) return;
+                overlay.classList.remove('open');
+                overlay.setAttribute('aria-hidden','true');
+                try{ document.documentElement.style.overflow = ''; }catch(e){}
+            }
+            hamburger && hamburger.addEventListener('click', function(e){ openOverlay(); });
+            overlayClose && overlayClose.addEventListener('click', function(e){ closeOverlay(); });
+            // Close when clicking a link
+            document.querySelectorAll('.overlay-link').forEach(a=> a.addEventListener('click', ()=> closeOverlay()));
+            // Close on escape
+            document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeOverlay(); });
+            // Prevent focus outside while open (simple trap)
+            document.addEventListener('focus', function(e){ if(overlay && overlay.classList.contains('open') && !overlay.contains(e.target)) { e.stopPropagation(); overlayClose.focus(); } }, true);
+        })();
+    </script>
 </body>
 </html>
-
