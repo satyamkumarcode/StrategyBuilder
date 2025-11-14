@@ -1,0 +1,305 @@
+/* ========================================
+   RESPONSIVE DESIGN CSS FOR STRATEGYBUILDER
+   ======================================== */
+
+/* Base Mobile Devices (max-width: 768px) */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .market-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .market-meta {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .market-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-group {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .control-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .forecast-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .table-container {
+        padding: 1rem;
+    }
+
+    .data-table {
+        font-size: 0.85rem;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 0.5rem;
+    }
+
+    .chart-canvas {
+        height: 300px;
+    }
+
+    .decision-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .indicators-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .risk-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sentiment-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Enhanced Mobile Responsiveness for Small Devices (max-width: 480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .control-panel,
+    .chart-container,
+    .forecast-panel,
+    .table-container,
+    .risk-calculator,
+    .sentiment-panel,
+    .indicators-panel,
+    .decision-panel {
+        padding: 1rem;
+        border-radius: 15px;
+    }
+
+    .metric-card {
+        padding: 1rem;
+    }
+
+    .metric-value {
+        font-size: 1.5rem;
+    }
+
+    .chart-title,
+    .control-title,
+    .risk-title,
+    .sentiment-title,
+    .decision-title {
+        font-size: 1rem;
+    }
+
+    .chart-canvas {
+        height: 250px;
+    }
+
+    .btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .control-input,
+    .sentiment-select {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .sentiment-select {
+        min-width: 150px;
+    }
+
+    .control-grid,
+    .metrics-grid,
+    .forecast-grid,
+    .decision-grid,
+    .indicators-grid,
+    .risk-grid,
+    .sentiment-grid {
+        gap: 1rem;
+    }
+
+    .risk-ratio-value {
+        font-size: 1.5rem;
+    }
+
+    .forecast-values {
+        grid-template-columns: 1fr;
+    }
+
+    .live-ticker {
+        padding: 1rem;
+    }
+
+    .ticker-title {
+        font-size: 1rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Tablet and Medium Screens (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    .control-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .forecast-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .indicators-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sentiment-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .decision-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .risk-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .chart-canvas {
+        height: 350px;
+    }
+}
+
+/* Large Screens Optimization (min-width: 1400px) */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1600px;
+    }
+
+    .metrics-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .control-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .chart-canvas {
+        height: 450px;
+    }
+}
+
+/* Landscape Mobile Devices */
+@media (max-height: 600px) and (orientation: landscape) {
+    .chart-canvas {
+        height: 200px;
+    }
+
+    .control-panel,
+    .chart-container {
+        padding: 1rem;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .btn,
+    .control-input,
+    .sentiment-select {
+        min-height: 44px; /* Touch-friendly minimum */
+    }
+
+    .metric-card,
+    .indicator-card,
+    .sentiment-item {
+        padding: 1.25rem;
+    }
+
+    /* Larger tap targets */
+    .checkbox-container {
+        padding: 0.5rem 0;
+    }
+}
+
+/* Additional Mobile Navigation Styles */
+@media (max-width: 900px) {
+    #mainNav {
+        display: none !important;
+    }
+
+    .logo-text {
+        display: none;
+    }
+
+    .logo-icon {
+        font-weight: 800;
+    }
+
+    .header {
+        padding: 12px 16px;
+    }
+
+    .theme-toggle {
+        margin-left: 6px;
+    }
+}
+
+@media (min-width: 901px) {
+    /* Ensure overlay hidden on desktop */
+    .mobile-hamburger {
+        display: none;
+    }
+}
+
+/* ========================================
+   ADDITIONAL IMPROVEMENTS
+   ======================================== */
+
+/* Smooth scrolling for better UX */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Font smoothing for better text rendering */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scrolling on iOS devices */
+.table-container,
+.live-ticker {
+    -webkit-overflow-scrolling: touch;
+}
